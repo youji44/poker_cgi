@@ -1,0 +1,63 @@
+<html>
+<head>
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+        }
+        .card-body {
+            --transition: 0.15s;
+            transition: transform var(--transition);
+        }
+        .card-body:active {
+            transform: scale(0.9);
+        }
+        .card-label {
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .btn{
+            background-color: #127515;
+            cursor: pointer;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="deck-body">
+        <center><h1>Poker Hand, Please select Five Cards!</h1></center>
+        <br/>
+        <form action="api.py" method="post">
+            <div id="card-container" class="card-container" style="display: flex;align-content: center; justify-content: center;">
+            </div>
+            <div style="text-align: center;padding-top: 20px;">
+                <button class="btn" value="submit">Check Poker Hand</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    var cards = ["2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "th", "jh", "qh", "kh", "ah",
+                "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "tc", "jc", "qc", "kc", "ac",
+                "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "ts", "js", "qs", "ks", "as",
+                "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "td", "jd", "qd", "kd", "ad"]
+    var card_html = ''
+    for (card of cards) {
+        card_html += '<div class="card-body">';
+        card_html += '<input class="check-card" type="checkbox" name="cards" value="' + card +'" id="'+card+'"/>';
+        card_html += '<label class="card-label" for="' + card + '">';
+        card_html += '<img class="card-img" src="./cards/' + card + '.png"/>';
+        card_html += '</label></div>';
+    }
+    document.getElementById("card-container").innerHTML = card_html;
+</script>
+</html>
